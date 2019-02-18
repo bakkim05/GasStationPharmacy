@@ -7,8 +7,8 @@ using System.Web.Http;
 
 namespace GasStationPharmacy.Controllers
 {
-    [RoutePrefix("Medicines")]
-    public class GestMedicamentos : ApiController
+    [RoutePrefix("medicines")]
+    public class GestMedicamentosController : ApiController
     { 
         /**
          * Lista los medicamentos existentes.
@@ -22,12 +22,10 @@ namespace GasStationPharmacy.Controllers
                 new string[] {"Hidróxido de magnesio", "BombaTica", "Sí", "10" }.ToString()
             };
         }
-        //nombre,
-        //casa farmacéutica, requiere prescripción(Si/No), cantidad disponible
         /**
         * Realiza la función de añadir un medicamento.
         */
-        [Route("{MedInfo:string}")]
+        [Route("{MedInfo}")]
         [HttpPost]
         public void Post(string MedInfo)
         {
@@ -36,7 +34,7 @@ namespace GasStationPharmacy.Controllers
         /**
          * Actualiza la información de un medicamento.
          */
-        [Route("{MedInfo:string}")]
+        [Route("{MedInfo}")]
         [HttpPut]
         public void Put(string MedInfo)
         {
@@ -52,34 +50,5 @@ namespace GasStationPharmacy.Controllers
         {
 
         }
-
-
-        /*
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }*/
     }
 }

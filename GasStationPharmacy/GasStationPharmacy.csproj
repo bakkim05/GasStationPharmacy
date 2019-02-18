@@ -162,11 +162,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ClientController.cs" />
-    <Compile Include="Controllers\GestClientes.cs" />
-    <Compile Include="Controllers\GestDoctores.cs" />
-    <Compile Include="Controllers\GestMedicamentos.cs" />
+    <Compile Include="Controllers\GestClientesController.cs" />
+    <Compile Include="Controllers\GestDoctoresController.cs" />
+    <Compile Include="Controllers\GestMedicamentosController.cs" />
+    <Compile Include="Controllers\GestRolesController.cs" />
+    <Compile Include="Controllers\GestSucursalesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Loggin.cs" />
+    <Compile Include="Controllers\LogginCotroller.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

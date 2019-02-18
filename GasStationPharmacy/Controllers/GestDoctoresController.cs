@@ -8,7 +8,7 @@ using System.Web.Http;
 namespace GasStationPharmacy.Controllers
 {
     [RoutePrefix("Docs")]
-    public class GestDoctores : ApiController
+    public class GestDoctoresController : ApiController
     {
 
         [Route("")]
@@ -25,7 +25,7 @@ namespace GasStationPharmacy.Controllers
         /**
          * Realiza la función de crear un médico.
          */
-        [Route("{DocInfo:string}")]
+        [Route("{DocInfo}")]
         [HttpPost]
         public void Post(string DocInfo)
         {
@@ -34,7 +34,7 @@ namespace GasStationPharmacy.Controllers
         /**
          * Actualiza la información de un médico.
          */
-        [Route("{DocInfo:string}")]
+        [Route("{DocInfo}")]
         [HttpPut]
         public void Put(string DocInfo)
         {

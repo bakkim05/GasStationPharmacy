@@ -8,7 +8,7 @@ using System.Web.Http;
 namespace GasStationPharmacy.Controllers
 {
     [RoutePrefix("Clients")]
-    public class GestClientes : ApiController
+    public class GestClientesController : ApiController
     {
 
         /**Get principal de la página, solicita la información para desplegar los clientes existentes, 
@@ -19,10 +19,8 @@ namespace GasStationPharmacy.Controllers
         public IEnumerable<String> Get()
         {
             return new string[] {
-                new string[] {"5-0410-0316", "Dagoberto", "Rojas", "Cartago", new DateTime().ToString(),
-                    "2550-2480"}.ToString(),
-                new string[] {"5-0410-0316", "Keylor", "Juárez", "Cartago", "07/05/1996",
-                    "2550-9299"}.ToString()};
+                "5-0410-0316, Dagoberto, Rojas, Cartago" +new DateTime().ToString() + "2550-2480",
+                "5-0410-0316, Keylor, Juárez, Cartago, 07/05/1996, 2550-9299"};
         }
 
         /**Se puede utilizar para obtener o no el historial en caso de que se desee tener el historial por aparte,
@@ -67,7 +65,7 @@ namespace GasStationPharmacy.Controllers
          vista.
          
          Se podría utlizar este método y luego get, o se podría utilizar y recrear con js*/
-        [Route("{PteInfo:string}")]
+        [Route("{PteInfo}")]
         [HttpPut]
         public void Put(string PteInfo)
         {
