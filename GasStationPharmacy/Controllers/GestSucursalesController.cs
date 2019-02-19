@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,9 +16,9 @@ namespace GasStationPharmacy.Controllers
          * */
         [Route("")]
         [HttpGet]
-        public IEnumerable<string> Get()
+        public String Get()
         {
-            return new string[] { "Cartago, Phischel, Cartago, Nickolas", "value2" };
+            return JsonConvert.SerializeObject(new String[] { "Cartago, Phischel, Cartago, Nickolas", "value2" });
         }
 
         /**
