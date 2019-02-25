@@ -11,6 +11,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // array in local storage for registered users
         let users: any[] = JSON.parse(localStorage.getItem('users')) || [];
+        let recipes: any[] = JSON.parse(localStorage.getItem('recipes')) || [];
 
         // wrap in delayed observable to simulate server api call
         return of(null).pipe(mergeMap(() => {
@@ -51,6 +52,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 }
             }
 
+            //get recipes
+            if (request.url.endsWith('/recipes') && request.method === 'GET') {
+                return of(new HttpResponse({ status: 200, body: recipes }));
+            }
+
             // get user by id
             if (request.url.match(/\/users\/\d+$/) && request.method === 'GET') {
                 // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
@@ -66,6 +72,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     // return 401 not authorised if token is null or invalid
                     return throwError({ status: 401, error: { message: 'Unauthorised' } });
                 }
+            }
+
+            // get recipes by id
+            if (request.url.match(/\/recipes\/\d+$/) && request.method === 'GET') {
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                let matchedRecipes = recipes.filter(recipe => { return recipe.id === id; });
+                let recipe = matchedRecipes.length ? matchedRecipes[0] : null;
+
+                return of(new HttpResponse({ status: 200, body: recipe}));
             }
 
             // register user
@@ -85,6 +101,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 localStorage.setItem('users', JSON.stringify(users));
 
                 // respond 200 OK
+                return of(new HttpResponse({ status: 200 }));
+            }
+
+            // register recipe
+            if (request.url.endsWith('/recipes/registerRecipe') && request.method === 'POST') {
+                let newRecipe = request.body;
+
+                let duplicateRecipe = recipes.filter(recipe => { return recipe.number === newRecipe.number; }).length;
+                if (duplicateRecipe) {
+                    return throwError({ error: { message: 'Recipe number "' + newRecipe.number + '" is already taken' } });
+                }
+
+                newRecipe.id = recipes.length + 1;
+                recipes.push(newRecipe);
+                localStorage.setItem('recipes', JSON.stringify(recipes));
+
                 return of(new HttpResponse({ status: 200 }));
             }
 
@@ -113,10 +145,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 }
             }
 
+            // delete recipe
+            if (request.url.match(/\/recipes\/\d+$/) && request.method === 'DELETE') {
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                for (let i = 0; i < recipes.length; i++) {
+                    let recipe = recipes[i];
+                    if (recipe.id === id) {
+                        // delete user
+                        recipes.splice(i, 1);
+                        localStorage.setItem('recipes', JSON.stringify(recipes));
+                        break;
+                    }
+                }
+                return of(new HttpResponse({ status: 200 }));
+            }
+
             // pass through any requests not handled above
             return next.handle(request);
             
         }))
+
 
         // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
         .pipe(materialize())
