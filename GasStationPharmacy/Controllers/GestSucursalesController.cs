@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using GasStationPharmacy.Models;
 
 namespace GasStationPharmacy.Controllers
 {
@@ -18,7 +19,8 @@ namespace GasStationPharmacy.Controllers
         [HttpGet]
         public String Get()
         {
-            return JsonConvert.SerializeObject(new String[] { "Cartago, Phischel, Cartago, Nickolas", "value2" });
+            return MainClass.Main();
+            //return JsonConvert.SerializeObject(new String[] { "Cartago, Phischel, Cartago, Nickolas", "value2" });
         }
 
         /**
