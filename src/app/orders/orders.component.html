@@ -1,3 +1,22 @@
-<p>
-  orders works!
-</p>
+<h2>Orders</h2>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+  <a class="navbar-brand">Orders</a>
+  <button class="navbar-toggler" data-target="#register-recipe" data-toggle="collapse" aria-controls="register-recipe" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="register-recipe" class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/palce-order">Place Order<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<h3>History:</h3>
+<ul>
+  <li *ngFor="let order of orders">
+    {{order.product}} ({{order.cant}})
+    - <a (click)="deleteOrder(order.id)" class="text-danger">Delete</a>
+    - <a routerLink="/orders" class="text-danger">Edit</a>
+  </li>
+</ul>

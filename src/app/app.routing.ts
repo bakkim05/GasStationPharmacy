@@ -6,8 +6,9 @@ import { RegisterComponent } from './register';
 import { AuthGuard } from './_guards';
 import { EditUserComponent } from './edit-user';
 import { OrdersComponent } from './orders';
-import { RecipesComponent } from './recipes'
-import { RegisterRecipeComponent } from './register-recipe'
+import { RecipesComponent } from './recipes';
+import { RegisterRecipeComponent } from './register-recipe';
+import { PlaceOrderComponent } from './place-order';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     { path: 'recipes', component: RecipesComponent },
     { path: 'orders', component: OrdersComponent },
     { path: 'register-recipe', component: RegisterRecipeComponent},
+    { path: 'palce-order', component: PlaceOrderComponent},
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

@@ -16,9 +16,9 @@ import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { EditUserComponent } from './edit-user';
 import { OrdersComponent } from './orders';
-import { RecipesComponent } from './recipes'
-;
-import { RegisterRecipeComponent } from './register-recipe/register-recipe.component'
+import { RecipesComponent } from './recipes';
+import { RegisterRecipeComponent } from './register-recipe/register-recipe.component';
+import { PlaceOrderComponent } from './place-order/place-order.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -35,7 +35,8 @@ import { RegisterRecipeComponent } from './register-recipe/register-recipe.compo
         EditUserComponent ,
         RecipesComponent ,
         OrdersComponent ,
-        RegisterRecipeComponent ],
+        RegisterRecipeComponent ,
+        PlaceOrderComponent],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

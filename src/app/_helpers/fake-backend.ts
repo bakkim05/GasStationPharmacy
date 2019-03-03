@@ -12,6 +12,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // array in local storage for registered users
         let users: any[] = JSON.parse(localStorage.getItem('users')) || [];
         let recipes: any[] = JSON.parse(localStorage.getItem('recipes')) || [];
+        let orders: any[] = JSON.parse(localStorage.getItem('orders')) || [];
 
         // wrap in delayed observable to simulate server api call
         return of(null).pipe(mergeMap(() => {
@@ -57,6 +58,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return of(new HttpResponse({ status: 200, body: recipes }));
             }
 
+            // get orders
+            if (request.url.endsWith('/orders') && request.method === 'GET') {
+                return of(new HttpResponse({ status: 200, body: orders }));
+            }
+
             // get user by id
             if (request.url.match(/\/users\/\d+$/) && request.method === 'GET') {
                 // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
@@ -80,6 +86,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 let id = parseInt(urlParts[urlParts.length - 1]);
                 let matchedRecipes = recipes.filter(recipe => { return recipe.id === id; });
                 let recipe = matchedRecipes.length ? matchedRecipes[0] : null;
+
+                return of(new HttpResponse({ status: 200, body: recipe}));
+            }
+
+            // get orders by id
+            if (request.url.match(/\/orders\/\d+$/) && request.method === 'GET') {
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                let matchedOrders = orders.filter(order => { return order.id === id; });
+                let recipe = matchedOrders.length ? matchedOrders[0] : null;
 
                 return of(new HttpResponse({ status: 200, body: recipe}));
             }
@@ -120,6 +136,17 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return of(new HttpResponse({ status: 200 }));
             }
 
+            // place order
+            if (request.url.endsWith('/orders/placeOrder') && request.method === 'POST') {
+                let newOrder = request.body;
+
+                newOrder.id = orders.length + 1;
+                orders.push(newOrder);
+                localStorage.setItem('orders', JSON.stringify(orders));
+
+                return of(new HttpResponse({ status: 200 }));
+            }
+
             // delete user
             if (request.url.match(/\/users\/\d+$/) && request.method === 'DELETE') {
                 // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
@@ -155,6 +182,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         // delete user
                         recipes.splice(i, 1);
                         localStorage.setItem('recipes', JSON.stringify(recipes));
+                        break;
+                    }
+                }
+                return of(new HttpResponse({ status: 200 }));
+            }
+
+            // delete order
+            if (request.url.match(/\/orders\/\d+$/) && request.method === 'DELETE') {
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                for (let i = 0; i < orders.length; i++) {
+                    let recipe = orders[i];
+                    if (recipe.id === id) {
+                        // delete user
+                        orders.splice(i, 1);
+                        localStorage.setItem('orders', JSON.stringify(orders));
                         break;
                     }
                 }
