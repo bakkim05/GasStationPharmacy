@@ -1,0 +1,15 @@
+
+THINGS TO DO:
+
+-----------Crear repor de crystalrepot alambrado----------------
+-----------Alambrar el log in de nicko-----------------
+
+
+
+THING TO IMPROVE:
+------------Aspectos est[eticos menores---------
+------------Mejoras en la interacci[on con el usuario-------------
+
+
+THINGS TO HELP:
+-------------Colorcar el API del rest por formalidad----------------
