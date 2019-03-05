@@ -168,11 +168,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ClienteModel.cs" />
+    <Compile Include="Models\CONSTANTS.cs" />
+    <Compile Include="Models\DoctorModel.cs" />
+    <Compile Include="Models\JSONObjectSerializer.cs" />
     <Compile Include="Models\ListModel.cs" />
     <Compile Include="Models\I_GasSModel.cs" />
     <Compile Include="Models\MainClass.cs" />
+    <Compile Include="Models\MedicamentoModel.cs" />
     <Compile Include="Models\PedidoModel.cs" />
     <Compile Include="Models\RecipeModel.cs" />
+    <Compile Include="Models\RolModel.cs" />
+    <Compile Include="Models\SucursalModel.cs" />
     <Compile Include="Models\XmlObjectSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

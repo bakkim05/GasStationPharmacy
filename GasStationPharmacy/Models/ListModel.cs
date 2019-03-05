@@ -1,42 +1,48 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace GasStationPharmacy.Models
 {
-    public class ListModel
+    public class ListModel 
     {
 
         // Atributos 
-        private List<I_GasSModel> listaClientes;
+        private List<I_GasSModel> lista;
 
         //Metodos
-        public void AddClient(I_GasSModel pClient)
+        public void Add(I_GasSModel pClient)
         {
-            listaClientes.Add(pClient);
+            lista.Add(pClient);
         }
 
         public string GetClient(I_GasSModel pToken)
         {
-            int i = 0;
-            for (; i < listaClientes.Count; i++)
+            for (int i = 0; i < lista.Count; i++)
             {
-                if (listaClientes[i].Compare(pToken).Equals(1))
+                if (lista[i].Compare(pToken).Equals(CONSTANTS.SAME))
                 {
-                    return XmlObjectSerializer.Serialize<I_GasSModel>(listaClientes[i]);
+                    return JSONObjectSerializer.WriteFromObject(lista[i]);
                 }
-                 
             }
             return "";
         }
 
-        public string AddClientXML(string pClientString)
+        public string Get()
+        {
+            return JsonConvert.SerializeObject(lista, Formatting.Indented);
+            //return JSONObjectSerializer.WriteFromObject(lista);
+        }
+
+        public string AddElement(string pClientString)
         {
             I_GasSModel clientTMP = XmlObjectSerializer.Deserialize<I_GasSModel>(pClientString);
-            if (this.GetClient(clientTMP.GetIdentifier()).Equals(""))
+            if (this.GetClient(clientTMP).Equals(""))
             {
-                listaClientes.Add(clientTMP);
+                lista.Add(clientTMP);
                 return "OK";
             }
             else
@@ -44,11 +50,10 @@ namespace GasStationPharmacy.Models
                 return "ERROR";
             }
         }
-
         //Constructor
-        public ClientModelList()
+        public ListModel()
         {
-            listaClientes = new List<I_GasSModel>();
+            lista = new List<I_GasSModel>();
         }
 
     }
