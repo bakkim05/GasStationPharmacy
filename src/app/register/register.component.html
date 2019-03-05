@@ -19,7 +19,7 @@
     <div class="row">
         <div class="form-group col s6"> <!--cedula-->
             <label for="cedula">ID</label>
-            <input type="number" formControlName="cedula" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cedula.errors }" />
+            <input type="tel" formControlName="cedula" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cedula.errors }" />
             <div *ngIf="submitted && f.cedula.errors" class="invalid-feedback">
                 <div *ngIf="f.cedula.errors.required">ID is required</div>
                 <div *ngIf="f.cedula.errors.minlength">ID must be at least 8 characters</div>

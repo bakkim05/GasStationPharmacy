@@ -18,7 +18,7 @@ const appRoutes: Routes = [
     { path: 'recipes', component: RecipesComponent },
     { path: 'orders', component: OrdersComponent },
     { path: 'register-recipe', component: RegisterRecipeComponent},
-    { path: 'palce-order', component: PlaceOrderComponent},
+    { path: 'place-order', component: PlaceOrderComponent},
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
