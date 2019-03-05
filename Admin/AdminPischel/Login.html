@@ -1,109 +1,98 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Farmacias Phischel</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
-</head>
-<body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-t-85 p-b-20">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-70">
-						Bienvenido
-					</span>
-					<span class="login100-form-avatar">
-						<img src="https://i.imgur.com/18JJaAm.png" alt="AVATAR">
-					</span>
+<html lang="en" ng-app="computer">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Justified Nav Template for Bootstrap</title>
 
-					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
-						<input class="input100" type="text" name="username">
-						<span class="focus-input100" data-placeholder="Usuario"></span>
-					</div>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
 
-					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-						<input class="input100" type="password" name="pass">
-						<span class="focus-input100" data-placeholder="contraseña"></span>
-					</div>
+    <!-- Custom styles for this template -->
+    <link href="styles.css" rel="stylesheet">
+      
+  </head>
 
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
-                            Validar
-                        </button>
-                        <a href="index.html" class="txt2">
-                            Continuar
-                        </a>
-                    </div>
+  <body>
+      <img src="https://i.imgur.com/18JJaAm.png" width="300" height="100" alt="Logo de farmacias Phiscel"/>
+    <div class="container">
 
-					<ul class="login-more p-t-190">
-						<li class="m-b-8">
-							<span class="txt1">
-								Lo olvidé
-							</span>
+      <div class="masthead">
+        <h3 class="text-muted">Admin</h3>
 
-							<a href="#" class="txt2">
-								Usuario / Contraseña?
-							</a>
-						</li>
+        <nav class="navbar navbar-expand-md navbar-light bg-light rounded mb-3">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse" ng-controller="MainCtrl">
+            <ul class="navbar-nav text-md-center nav-justified w-100">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clientes</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                  <li><a class="dropdown-item" href="#!updateclient">Actualiza</a></li>
+                  <li><a class="dropdown-item" href="#!deleteclient">Eliminar</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empleados</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                  <li><a class="dropdown-item" href="#!createemployee">Crear</a></li>
+                  <li><a class="dropdown-item" href="#!updateemployee">Actualizar</a></li>
+                  <li><a class="dropdown-item" href="#!deleteemployee">Eliminar</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Medicamentos</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                  <li><a class="dropdown-item" href="#!createmed">Crear</a></li>
+                  <li><a class="dropdown-item" href="#!updatetemed">Actualizar</a></li>
+                  <li><a class="dropdown-item" href="#!deletemed">Eliminar</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Roles</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                  <li><a class="dropdown-item" href="#!createrol">Crear</a></li>
+                  <li><a class="dropdown-item" href="#!updaterol">Actualizar</a></li>
+                  <li><a class="dropdown-item" href="#!deleterol">Eliminar</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sucursales</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                  <li><a class="dropdown-item" href="#!createsuc">Crear</a></li>
+                  <li><a class="dropdown-item" href="#!updatesuc">Actualizar</a></li>
+                  <li><a class="dropdown-item" href="#!deletesuc">Eliminar</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#!stat">Estadìsticas</a>
+                  <a class="nav-link" href="#!index">Regresar</a>
+                  <a class="nav-link" href="Login.html">Salir</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
 
-						<li>
-							<span class="txt1">
-								Su usuario no sirve?
-							</span>
+      <!-- Jumbotron -->
+      <div ng-controller="AdminCtrl">
+        <div ng-view></div>
+      </div>
 
-							<a href="mailto:rjmolinazx@gmail.com?subject=SoporteAdmin &body= Favor adjuntar credenciales de la empresa"" class="txt2">
-								Soporte
-							</a>
-						</li>
-					</ul>
-				</form>
-			</div>
-		</div>
-	</div>
-	
+      <!-- Site footer -->
+      <footer class="footer">
+        <p>&copy; Pischel Pharmacies 2019</p>
+      </footer>
 
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+    </div> <!-- /container -->
 
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="admin-ctrl.js"></script>
+  </body>
 </html>
