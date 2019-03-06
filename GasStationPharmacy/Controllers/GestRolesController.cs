@@ -1,4 +1,5 @@
 ﻿using GasStationPharmacy.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +19,18 @@ namespace GasStationPharmacy.Controllers
         [HttpGet]
         public string Get()
         {
-            return CONSTANTS.ListaRoles.Get();
+            return JsonConvert.SerializeObject(CONSTANTS.ListaRoles.lista, Formatting.Indented);
         }
 
         /**
          * Añade un rol, se indica el rol y la descripción.
          * */
-        [Route("{role}/{descr}")]
+        [Route("{role}")]
         [HttpPost]
-        public void Post(String role, String descr)
+        public void Post(String role)
         {
-
+            string reformatPost = role.Replace("-", ":");
+            CONSTANTS.ListaClientes.Add(JsonConvert.DeserializeObject<RolModel>(reformatPost));
         }
 
         /**

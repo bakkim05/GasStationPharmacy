@@ -19,7 +19,8 @@ namespace GasStationPharmacy.Controllers
         [HttpGet]
         public string Get()
         {
-            return CONSTANTS.ListaSucursales.Get();
+            return JsonConvert.SerializeObject(CONSTANTS.ListaSucursales.lista, Formatting.Indented);
+            //return CONSTANTS.ListaSucursales.Get();
             //return JsonConvert.SerializeObject(new String[] { "Cartago, Phischel, Cartago, Nickolas", "value2" });
         }
 
@@ -30,6 +31,8 @@ namespace GasStationPharmacy.Controllers
         [HttpPost]
         public void Post(String SucInfo)
         {
+            string reformatPost = SucInfo.Replace("-", ":");
+            CONSTANTS.ListaClientes.Add(JsonConvert.DeserializeObject<SucursalModel>(reformatPost));
         }
 
         /**

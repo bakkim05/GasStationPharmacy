@@ -1,4 +1,5 @@
 ﻿using GasStationPharmacy.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +17,20 @@ namespace GasStationPharmacy.Controllers
         [HttpGet]
         public string Get()
         {
-            return CONSTANTS.ListaDoctores.Get();
+            return JsonConvert.SerializeObject(CONSTANTS.ListaDoctores.lista, Formatting.Indented);
+            //return CONSTANTS.ListaDoctores.Get();
         }
 
         /**
          * Realiza la función de crear un médico.
          */
-        [Route("{DocInfo}")]
+        [Route("register/{DocInfo}")]
         [HttpPost]
         public void Post(string DocInfo)
         {
-
+            string reformatPost = DocInfo.Replace("-", ":");
+            //CONSTANTS.ListaClientes.AddElement(reformatPost, CONSTANTS.CLIENTE);
+            CONSTANTS.ListaClientes.Add(JsonConvert.DeserializeObject<DoctorModel>(reformatPost));
         }
         /**
          * Actualiza la información de un médico.

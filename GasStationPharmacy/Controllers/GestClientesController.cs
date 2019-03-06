@@ -21,7 +21,7 @@ namespace GasStationPharmacy.Controllers
         [HttpGet]
         public string Get()
         {
-            CONSTANTS.ListaClientes.Add(new ClienteModel());
+            //CONSTANTS.ListaClientes.Add(new ClienteModel());
             return   JsonConvert.SerializeObject(CONSTANTS.ListaClientes.lista, Formatting.Indented);
             //return ;
         }
@@ -80,13 +80,13 @@ namespace GasStationPharmacy.Controllers
          */
         [Route("register/{DocInfo}")]
         [HttpPost]
-        public string Post(string DocInfo)
+        public void Post(string DocInfo)
         {
             string reformatPost = DocInfo.Replace("-", ":");
             //CONSTANTS.ListaClientes.AddElement(reformatPost, CONSTANTS.CLIENTE);
             CONSTANTS.ListaClientes.Add(JsonConvert.DeserializeObject<ClienteModel>(reformatPost));
 
-            return  JsonConvert.SerializeObject(CONSTANTS.ListaClientes.lista);//CONSTANTS.ListaClientes.AddElement(DocInfo, CONSTANTS.CLIENTE);
+            //return  JsonConvert.SerializeObject(CONSTANTS.ListaClientes.lista);//CONSTANTS.ListaClientes.AddElement(DocInfo, CONSTANTS.CLIENTE);
         }
 
         /*Número Cédula, Nombre, Apellidos, Lugar de Residencia, Fecha de nacimiento,

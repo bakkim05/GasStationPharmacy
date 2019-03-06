@@ -1,4 +1,5 @@
 ﻿using GasStationPharmacy.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace GasStationPharmacy.Controllers
         [HttpGet]
         public string Get()
         {
-            return CONSTANTS.ListaMedicamentos.Get();
+            return JsonConvert.SerializeObject(CONSTANTS.ListaMedicamentos.lista, Formatting.Indented);
         }
         /**
         * Realiza la función de añadir un medicamento.
@@ -27,7 +28,8 @@ namespace GasStationPharmacy.Controllers
         [HttpPost]
         public void Post(string MedInfo)
         {
-
+            string reformatPost = MedInfo.Replace("-", ":");
+            CONSTANTS.ListaClientes.Add(JsonConvert.DeserializeObject<MedicamentoModel>(reformatPost));
         }
         /**
          * Actualiza la información de un medicamento.
