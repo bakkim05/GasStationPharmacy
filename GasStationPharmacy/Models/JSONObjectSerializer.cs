@@ -12,7 +12,20 @@ namespace GasStationPharmacy.Models
     public class JSONObjectSerializer
     {
         // Create a User object and serialize it to a JSON stream.  
-        public static string WriteFromObject(object toEncode)
+
+        public static string WriteFromLista(List<GasSModel> lista) {
+            string retStr = "[";
+            for(int i = 0; i<lista.Count; i++){
+                retStr += WriteFromObject(lista.ElementAt(i));
+                if (i != lista.Count - 1)
+                {
+                    retStr += ",";
+                }
+            }
+            retStr += "]";
+            return retStr;
+        }
+        public static string WriteFromObject(GasSModel toEncode)
         {
             /*
             //Create User object.  
@@ -22,17 +35,17 @@ namespace GasStationPharmacy.Models
             MemoryStream ms = new MemoryStream();
 
             // Serializer the User object to the stream.  
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(I_GasSModel));
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(GasSModel));
             ser.WriteObject(ms, toEncode);
             byte[] json = ms.ToArray();
             ms.Close();
-            return Encoding.UTF8.GetString(json, 0, json.Length);
+            return Encoding.Unicode.GetString(json, 0, json.Length);
         }
 
         // Deserialize a JSON stream to a User object.  
-        public static I_GasSModel ReadToObject(string json, int type)
+        public static GasSModel ReadToObject(string json, int type)
         {
-            I_GasSModel deserialized;
+            GasSModel deserialized;
             switch (type)
             {
                 case CONSTANTS.CLIENTE:
@@ -60,7 +73,7 @@ namespace GasStationPharmacy.Models
             MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
 
             DataContractJsonSerializer ser = new DataContractJsonSerializer(deserialized.GetType());
-            deserialized = ser.ReadObject(ms) as I_GasSModel;
+            deserialized = ser.ReadObject(ms) as GasSModel;
             ms.Close();
             return deserialized;
         }

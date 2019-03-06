@@ -7,7 +7,7 @@ using System.Web;
 namespace GasStationPharmacy.Models
 {
     [DataContract]
-    public class DoctorModel : I_GasSModel
+    public class DoctorModel : GasSModel
     {
         [DataMember]
         public string Cedula { get; set; }
@@ -21,10 +21,6 @@ namespace GasStationPharmacy.Models
         public string Residencia { get; set; }
         [DataMember]
         public string FechaNacimiento { get; set; }
-
-        public string Compare(I_GasSModel toCompare)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

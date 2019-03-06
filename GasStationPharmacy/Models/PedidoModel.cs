@@ -7,7 +7,7 @@ using System.Web;
 namespace GasStationPharmacy.Models
 {
     [DataContract]
-    public class PedidoModel : I_GasSModel
+    public class PedidoModel : GasSModel
     {
         /** Gestión de Pedidos: Las operaciones que debe proveer este módulo son creación,
 actualización, eliminación de pedidos, los datos a almacenar de los pedidos son:
@@ -25,10 +25,6 @@ recojo, imagen de la receta.*/
         private string HoraRecojo { get; set; }
         [DataMember]
         private string Image { get; set; }
-
-        public string Compare(I_GasSModel toCompare)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

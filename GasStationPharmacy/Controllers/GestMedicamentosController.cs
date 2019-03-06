@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GasStationPharmacy.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,7 +8,7 @@ using System.Web.Http;
 
 namespace GasStationPharmacy.Controllers
 {
-    [RoutePrefix("medicines")]
+    [RoutePrefix("REST/medicines")]
     public class GestMedicamentosController : ApiController
     { 
         /**
@@ -15,12 +16,9 @@ namespace GasStationPharmacy.Controllers
          * */
         [Route("")]
         [HttpGet]
-        public IEnumerable<String> Get()
+        public string Get()
         {
-            return new string[] {
-                new string[] {"Paracetamol","Phischel", "No", "64"}.ToString(),
-                new string[] {"Hidróxido de magnesio", "BombaTica", "Sí", "10" }.ToString()
-            };
+            return CONSTANTS.ListaMedicamentos.Get();
         }
         /**
         * Realiza la función de añadir un medicamento.

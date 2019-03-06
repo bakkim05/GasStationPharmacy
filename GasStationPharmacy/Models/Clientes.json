@@ -1,0 +1,17 @@
+{
+  "Clients": [
+    {
+      "id": 5410,
+      "username": "user1",
+      "password": "pw1",
+      "firstName": "Nombre1",
+      "lastName": "Apellido1",
+      "cedula": "504100316",
+      "fechaNacimiento": "211245",
+      "phone": "87660519",
+      "dir": "Chart",
+      "token": "tokis"
+    }
+  ]
+
+}

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GasStationPharmacy.Models
 {
-    public class RecipeModel
+    public class RecipeModel : GasSModel
     {
         public int Id { get; set; }
         public int Number { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GasStationPharmacy.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,15 +8,17 @@ using System.Web.Http;
 
 namespace GasStationPharmacy.Controllers
 {
-    [RoutePrefix("dago")]
+    [RoutePrefix("REST/cliente")]
     public class ClientController : ApiController
     {
         // GET dago
-        [Route("get1")]
+        [Route("")]
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get()
         {
-            return new string[] { "dago1", "dago2" };
+            CONSTANTS.ListaClientes.Add(new ClienteModel() {
+            Cedula = "asdfasf"});
+            return CONSTANTS.ListaClientes.Get();
         }
 
         // GET api/client/5

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GasStationPharmacy.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,19 +8,15 @@ using System.Web.Http;
 
 namespace GasStationPharmacy.Controllers
 {
-    [RoutePrefix("Docs")]
+    [RoutePrefix("REST/doctores")]
     public class GestDoctoresController : ApiController
     {
 
         [Route("")]
         [HttpGet]
-        public IEnumerable<String> Get()
+        public string Get()
         {
-            return new string[] {
-                new string[] {"5-0410-0316","10056", "Dagoberto", "Rojas", "Cartago", new DateTime().ToString(),
-                    "2550-2480"}.ToString(),
-                new string[] {"5-0410-0316","15532", "Keylor", "Juárez", "Cartago", "07/05/1996",
-                    "2550-9299"}.ToString()};
+            return CONSTANTS.ListaDoctores.Get();
         }
 
         /**

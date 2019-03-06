@@ -9,23 +9,22 @@ namespace GasStationPharmacy.Models
 {
     public class ListModel 
     {
-
         // Atributos 
-        private List<I_GasSModel> lista;
+        public List<GasSModel> lista;
 
         //Metodos
-        public void Add(I_GasSModel pClient)
+        public void Add(GasSModel pElement)
         {
-            lista.Add(pClient);
+            lista.Add(pElement);
         }
 
-        public string GetClient(I_GasSModel pToken)
+        public string GetClient(string pToken)
         {
             for (int i = 0; i < lista.Count; i++)
             {
                 if (lista[i].Compare(pToken).Equals(CONSTANTS.SAME))
                 {
-                    return JSONObjectSerializer.WriteFromObject(lista[i]);
+                    return JsonConvert.SerializeObject(lista[i], Formatting.Indented);
                 }
             }
             return "";
@@ -33,14 +32,15 @@ namespace GasStationPharmacy.Models
 
         public string Get()
         {
-            return JsonConvert.SerializeObject(lista, Formatting.Indented);
-            //return JSONObjectSerializer.WriteFromObject(lista);
+            //return JsonConvert.SerializeObject(lista);
+            //JsonConvert
+            return JSONObjectSerializer.WriteFromLista(lista);
         }
 
-        public string AddElement(string pClientString)
+        public string AddElement(string pClientString, int type)
         {
-            I_GasSModel clientTMP = XmlObjectSerializer.Deserialize<I_GasSModel>(pClientString);
-            if (this.GetClient(clientTMP).Equals(""))
+            GasSModel clientTMP = JSONObjectSerializer.ReadToObject(pClientString, type);
+            if (this.GetClient(clientTMP.Hash).Equals(CONSTANTS.DIFFERENT))
             {
                 lista.Add(clientTMP);
                 return "OK";
@@ -50,11 +50,23 @@ namespace GasStationPharmacy.Models
                 return "ERROR";
             }
         }
+
+        public void DeleteElement(string toDel)
+        {
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (lista[i].Compare(toDel).Equals(CONSTANTS.SAME))
+                {
+                    lista.RemoveAt(i);
+                }
+            }
+
+        }
+        
         //Constructor
         public ListModel()
         {
-            lista = new List<I_GasSModel>();
+            lista = new List<GasSModel>();
         }
-
     }
 }

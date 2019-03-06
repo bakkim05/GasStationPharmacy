@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GasStationPharmacy.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,7 +8,7 @@ using System.Web.Http;
 
 namespace GasStationPharmacy.Controllers
 {
-    [RoutePrefix("Roles")]
+    [RoutePrefix("REST/roles")]
     public class GestRolesController : ApiController
     {
         /**
@@ -15,9 +16,9 @@ namespace GasStationPharmacy.Controllers
          * */
         [Route("")]
         [HttpGet]
-        public String Get()
+        public string Get()
         {
-            return "";
+            return CONSTANTS.ListaRoles.Get();
         }
 
         /**

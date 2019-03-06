@@ -1,13 +1,16 @@
-﻿using System;
+﻿using GasStationPharmacy.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Web.Http;
 
 namespace GasStationPharmacy.Controllers
 {
-    [RoutePrefix("Clients")]
+    [RoutePrefix("REST/clients")]
     public class GestClientesController : ApiController
     {
 
@@ -16,11 +19,11 @@ namespace GasStationPharmacy.Controllers
          */
         [Route("")]
         [HttpGet]
-        public IEnumerable<String> Get()
+        public string Get()
         {
-            return new string[] {
-                "5-0410-0316, Dagoberto, Rojas, Cartago" +new DateTime().ToString() + "2550-2480",
-                "5-0410-0316, Keylor, Juárez, Cartago, 07/05/1996, 2550-9299"};
+            CONSTANTS.ListaClientes.Add(new ClienteModel());
+            return   JsonConvert.SerializeObject(CONSTANTS.ListaClientes.lista, Formatting.Indented);
+            //return ;
         }
 
         /**Se puede utilizar para obtener o no el historial en caso de que se desee tener el historial por aparte,
@@ -48,11 +51,11 @@ namespace GasStationPharmacy.Controllers
          */
         /*Ejecutar esta solicitud y luego un get para obtener la página actualizada o eleiminarlo con js para
          minimizar el tráfico en la red, aunque no va a ser algo significativo*/
-        [Route("{IDpte:int}")]
+        [Route("{IDpte}")]
         [HttpDelete]
-        public void Delete(int IDpte)
+        public void Delete(string IDpte)
         {
-
+            CONSTANTS.ListaClientes.DeleteElement(IDpte);
         }
 
         /**
@@ -70,6 +73,20 @@ namespace GasStationPharmacy.Controllers
         public void Put(string PteInfo)
         {
 
+        }
+
+        /**
+         * Realiza la función de crear un médico.
+         */
+        [Route("register/{DocInfo}")]
+        [HttpPost]
+        public string Post(string DocInfo)
+        {
+            string reformatPost = DocInfo.Replace("-", ":");
+            //CONSTANTS.ListaClientes.AddElement(reformatPost, CONSTANTS.CLIENTE);
+            CONSTANTS.ListaClientes.Add(JsonConvert.DeserializeObject<ClienteModel>(reformatPost));
+
+            return  JsonConvert.SerializeObject(CONSTANTS.ListaClientes.lista);//CONSTANTS.ListaClientes.AddElement(DocInfo, CONSTANTS.CLIENTE);
         }
 
         /*Número Cédula, Nombre, Apellidos, Lugar de Residencia, Fecha de nacimiento,

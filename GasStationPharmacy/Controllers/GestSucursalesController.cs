@@ -9,7 +9,7 @@ using GasStationPharmacy.Models;
 
 namespace GasStationPharmacy.Controllers
 {
-    [RoutePrefix("Sucursales")]
+    [RoutePrefix("REST/sucursales")]
     public class GestSucursalesController : ApiController
     {
         /**
@@ -17,9 +17,9 @@ namespace GasStationPharmacy.Controllers
          * */
         [Route("")]
         [HttpGet]
-        public String Get()
+        public string Get()
         {
-            return MainClass.Main();
+            return CONSTANTS.ListaSucursales.Get();
             //return JsonConvert.SerializeObject(new String[] { "Cartago, Phischel, Cartago, Nickolas", "value2" });
         }
 

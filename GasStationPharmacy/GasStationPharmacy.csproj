@@ -172,8 +172,7 @@
     <Compile Include="Models\DoctorModel.cs" />
     <Compile Include="Models\JSONObjectSerializer.cs" />
     <Compile Include="Models\ListModel.cs" />
-    <Compile Include="Models\I_GasSModel.cs" />
-    <Compile Include="Models\MainClass.cs" />
+    <Compile Include="Models\GasSModel.cs" />
     <Compile Include="Models\MedicamentoModel.cs" />
     <Compile Include="Models\PedidoModel.cs" />
     <Compile Include="Models\RecipeModel.cs" />

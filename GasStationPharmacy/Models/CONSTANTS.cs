@@ -16,10 +16,15 @@ namespace GasStationPharmacy.Models
 
         public const int SAME = 0;
         public const int DIFFERENT = 1;
-    }
 
-    public static void Main(string[] args)
-    {
+        //public const 
 
+        public static ListModel ListaClientes = new ListModel();
+        public static ListModel ListaDoctores = new ListModel();
+        public static ListModel ListaMedicamentos = new ListModel();
+        public static ListModel ListaPedidos = new ListModel();
+        public static ListModel ListaRecipes = new ListModel();
+        public static ListModel ListaRoles = new ListModel();
+        public static ListModel ListaSucursales = new ListModel();
     }
 }

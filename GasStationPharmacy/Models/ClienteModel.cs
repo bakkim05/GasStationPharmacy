@@ -6,8 +6,8 @@ using System.Web;
 
 namespace GasStationPharmacy.Models
 {
-    [DataContract]
-    public class ClienteModel : I_GasSModel
+    [CollectionDataContract]
+    public class ClienteModel : GasSModel
     {
         [DataMember]
         public static readonly string modelType = "Cliente";
@@ -41,10 +41,6 @@ namespace GasStationPharmacy.Models
 
         [DataMember]
         public string Token { get; set; }
-
-        public string Compare(I_GasSModel toCompare)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
